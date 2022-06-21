@@ -1,52 +1,59 @@
 ---
-name: "[BETA] In-memory MariaDB"
-version: 2.4.0.24-beta04
+version: 2.5.0.0-rc01
 homeassistant: 2022.6.0
 slug: mariadb-beta
+name: "[BETA] In-memory MariaDB"
 description: "[BETA] An in-memory SQL database server"
 url: https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory
+codenotary: lmagyar1973@gmail.com
 arch:
   - armhf
   - armv7
   - aarch64
   - amd64
   - i386
-startup: system
-init: false
-timeout: 20
 tmpfs: true
 privileged:
   - SYS_ADMIN
-backup_pre: /command/s6-svc -wU -u /run/service/mariadb-lock/
-backup_post: /command/s6-svc -wd -d /run/service/mariadb-lock/
-services:
-  - mysql:provide
-ports:
-  3306/tcp:
+map:
+  - share:rw
+backup_pre: /run/service/mariadb/export.sh
+image: lmagyar/{arch}-addon-mariadb-inmemory
+init: false
 options:
   tmpfs:
     size: 200m
+  retention:
+    enabled: null
   databases:
     - homeassistant
   logins:
-    - username: homeassistant
-      password:
+    - password: null
+      username: homeassistant
   rights:
-    - username: homeassistant
-      database: homeassistant
+    - database: homeassistant
+      username: homeassistant
+ports:
+  3306/tcp:
 schema:
   tmpfs:
     size: match(^\d+[kmg]?$)
+  retention:
+    enabled: bool?
   databases:
     - str
   logins:
     - username: str
       password: password
   rights:
-    - username: str
-      database: str
+    - database: str
       privileges:
         - "list(ALTER|CREATE|CREATE ROUTINE|CREATE TEMPORARY TABLES|\
            CREATE VIEW|DELETE|DELETE HISTORY|DROP|EVENT|GRANT OPTION|INDEX|\
            INSERT|LOCK TABLES|SELECT|SHOW VIEW|TRIGGER|UPDATE)?"
-image: lmagyar/{arch}-addon-mariadb-inmemory
+      username: str
+services:
+  - mysql:provide
+startup: system
+timeout: 20
+
