@@ -19,6 +19,7 @@ jobs:
         args: |
           --test \
           --no-cache \
+          --no-latest \
           --${{ matrix.arch }} \
           --target mariadb
       env:

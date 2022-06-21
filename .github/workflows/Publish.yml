@@ -23,6 +23,7 @@ jobs:
       with:
         args: |
           --no-cache \
+          --no-latest \
           --${{ matrix.arch }} \
           --target mariadb \
           --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
