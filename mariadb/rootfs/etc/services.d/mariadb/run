@@ -77,7 +77,7 @@ for database in $(bashio::config "databases"); do
 done
 
 # Import database content
-./import.sh
+import_homeassistant_database
 
 # Init logins
 bashio::log.info "Ensure users exists and are updated"
@@ -139,7 +139,7 @@ fi
 
 # Register stop
 function stop_mariadb() {
-    ./export.sh
+    export_homeassistant_database
     bashio::services.delete "mysql"
     mysqladmin shutdown
     # Successful exit, avoid wait exit status to propagate

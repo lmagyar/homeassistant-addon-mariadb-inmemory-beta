@@ -1,5 +1,5 @@
 ---
-version: 2.5.0.0-rc01
+version: 2.5.0.0-rc14
 homeassistant: 2022.6.0
 slug: mariadb-beta
 name: "[BETA] In-memory MariaDB"
@@ -17,14 +17,14 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-backup_pre: /run/service/mariadb/export.sh
+backup_pre: /command/s6-svc -wR -o /run/service/mariadb-lock/
 image: lmagyar/{arch}-addon-mariadb-inmemory
 init: false
 options:
   tmpfs:
     size: 200m
   retention:
-    enabled: null
+    enabled: true
   databases:
     - homeassistant
   logins:
@@ -39,7 +39,7 @@ schema:
   tmpfs:
     size: match(^\d+[kmg]?$)
   retention:
-    enabled: bool?
+    enabled: bool
   databases:
     - str
   logins:
@@ -55,5 +55,5 @@ schema:
 services:
   - mysql:provide
 startup: system
-timeout: 20
+timeout: 60
 
