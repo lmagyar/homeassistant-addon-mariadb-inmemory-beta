@@ -1,5 +1,5 @@
 ---
-version: 2.5.0.0-rc14
+version: 2.5.0.0-rc15
 homeassistant: 2022.6.0
 slug: mariadb-beta
 name: "[BETA] In-memory MariaDB"
