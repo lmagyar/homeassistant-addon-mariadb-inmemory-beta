@@ -1,9 +1,0 @@
-#!/usr/bin/with-contenv bashio
-# ==============================================================================
-# Start MariaDB client to dump tables (for backups)
-# ==============================================================================
-
-export_homeassistant_database
-
-# Notify s6 about successful service start
-echo "" >&3

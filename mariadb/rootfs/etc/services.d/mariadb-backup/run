@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start MariaDB-backup service
+# ==============================================================================
+MARIADB_FIFODIR=/tmp/export_homeassistant_database_fifodir
+
+/command/s6-mkfifodir ${MARIADB_FIFODIR}
+
+while :
+do
+    /command/s6-ftrig-wait ${MARIADB_FIFODIR} "e"
+    export_homeassistant_database
+    /command/s6-ftrig-notify ${MARIADB_FIFODIR} "E"
+done
