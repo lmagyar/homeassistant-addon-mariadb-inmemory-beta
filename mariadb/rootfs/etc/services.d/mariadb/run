@@ -139,7 +139,7 @@ fi
 
 # Register stop
 function stop_mariadb() {
-    export_homeassistant_database
+#    export_homeassistant_database
     bashio::services.delete "mysql"
     mysqladmin shutdown
     # Successful exit, avoid wait exit status to propagate
