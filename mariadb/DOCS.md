@@ -1,3 +1,7 @@
+
+| ![Stop][stop_sign] | This is a beta repository! Please use the non-beta https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory repository! This beta repository is for myself to experiment and test. After it works I delete even the images from docker. | ![Stop][stop_sign] |
+| --- | --- | --- |
+
 # Home Assistant Custom Add-on: In-memory MariaDB
 
 ![Warning][warning_stripe]
@@ -235,4 +239,5 @@ In case you've found a bug, please open an issue on our GitHub: [issue with the 
 [reddit]: https://reddit.com/r/homeassistant
 [repository]: https://github.com/hassio-addons/repository
 [warning_stripe]: https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory/raw/master/images/warning_stripe_wide.png
+[stop_sign]: https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory-beta/raw/master/images/stop_sign.png
 [official_addon]: https://github.com/home-assistant/addons/tree/master/mariadb
