@@ -47,7 +47,7 @@ for database in $(bashio::config "databases"); do
     # Create default schema
     if [[ "${database}" == "homeassistant" ]]; then
         bashio::log.info "Create default schema in database ${database}"
-        mysql ${database} < etc/schema.sql
+        mysql ${database} < /etc/schema.sql
     fi
 done
 

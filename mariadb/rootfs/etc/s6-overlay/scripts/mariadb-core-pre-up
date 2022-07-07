@@ -2,10 +2,9 @@
 # ==============================================================================
 # Pre-start initialization of MariaDB service
 # ==============================================================================
-TMPFS_MNT=/tmp
-MARIADB_DATA=${TMPFS_MNT}/databases
-MARIADB_DUMP=/data/homeassistant-database-dump.sql.gz
-NEW_INSTALL=false
+TMPFS_MNT=$(</etc/TMPFS_MNT)
+MARIADB_DATA=$(</etc/MARIADB_DATA)
+NEW_INSTALL=$(</etc/NEW_INSTALL)
 
 # Change tmpfs size to configured value
 TMPFS_SIZE=$(bashio::config "tmpfs.size")
@@ -26,6 +25,4 @@ rm -f "${MARIADB_DATA}/mariadb.err"
 ln -s /proc/1/fd/1 "${MARIADB_DATA}/mariadb.err"
 
 # Save variables
-echo ${MARIADB_DATA} > /etc/MARIADB_DATA
-echo ${MARIADB_DUMP} > /etc/MARIADB_DUMP
 echo ${NEW_INSTALL} > /etc/NEW_INSTALL
