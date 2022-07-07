@@ -8,7 +8,7 @@ s6-mkfifodir ${MARIADB_FIFODIR}
 
 while :
 do
-    s6-ftrig-wait ${MARIADB_FIFODIR} "e"
+    s6-ftrig-wait ${MARIADB_FIFODIR} "e" > /dev/null
     export-homeassistant-database
     s6-ftrig-notify ${MARIADB_FIFODIR} "E"
 done
