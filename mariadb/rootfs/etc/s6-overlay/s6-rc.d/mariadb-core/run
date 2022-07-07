@@ -7,7 +7,19 @@ MARIADB_DATA=$(</etc/MARIADB_DATA)
 # Start mariadb
 bashio::log.info "Starting MariaDB..."
 rm -f /etc/MARIADB_SHUTDOWN
-mysqld_safe --datadir="${MARIADB_DATA}" --user=root < /dev/null
+mysqld_safe --datadir="${MARIADB_DATA}" --user=root < /dev/null &
+MARIADB_PID=$!
+
+# Wait until DB is running
+while ! mysql -e "" 2> /dev/null; do
+    sleep 1
+done
+bashio::log.info "MariaDB started"
+
+# Notify s6 about successful service start
+echo "" >&3
+
+wait "${MARIADB_PID}"
 
 bashio::log.info "MariaDB stopped"
 if bashio::fs.file_exists "/etc/MARIADB_SHUTDOWN"; then
