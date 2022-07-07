@@ -15,5 +15,5 @@ export-homeassistant-database
 
 # Stop mariadb
 bashio::log.info "Stopping MariaDB..."
+touch /etc/MARIADB_SHUTDOWN
 mysqladmin --user=root shutdown
-bashio::log.info "MariaDB stopped #1"

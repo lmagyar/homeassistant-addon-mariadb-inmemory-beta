@@ -6,6 +6,11 @@ MARIADB_DATA=$(</etc/MARIADB_DATA)
 
 # Start mariadb
 bashio::log.info "Starting MariaDB..."
+rm -f /etc/MARIADB_SHUTDOWN
 mysqld_safe --datadir="${MARIADB_DATA}" --user=root < /dev/null
 
-bashio::log.info "MariaDB stopped #2"
+bashio::log.info "MariaDB stopped"
+if bashio::fs.file_exists "/etc/MARIADB_SHUTDOWN"; then
+    # workaround to avoid restarting the service after intended shutdown
+    sleep 10
+fi
