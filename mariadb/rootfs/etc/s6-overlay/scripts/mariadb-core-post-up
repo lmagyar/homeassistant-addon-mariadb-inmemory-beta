@@ -8,6 +8,7 @@ NEW_INSTALL=$(</etc/NEW_INSTALL)
 while ! mysql -e "" 2> /dev/null; do
     sleep 1
 done
+bashio::log.info "MariaDB started"
 
 bashio::log.info "Check data integrity and fix corruptions"
 mysqlcheck --no-defaults --databases mysql --fix-db-names --fix-table-names || true
