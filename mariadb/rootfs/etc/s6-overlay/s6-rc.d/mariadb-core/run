@@ -6,10 +6,6 @@ MARIADB_DATA=$(</etc/MARIADB_DATA)
 
 # Register stop
 function stop_mariadb() {
-echo $(date -Iseconds) BEFORE export >> /share/log
-    export-homeassistant-database
-echo $(date -Iseconds) AFTER export >> /share/log
-    bashio::services.delete "mysql"
     mysqladmin shutdown
     # Successful exit, avoid wait exit status to propagate
     exit 0
