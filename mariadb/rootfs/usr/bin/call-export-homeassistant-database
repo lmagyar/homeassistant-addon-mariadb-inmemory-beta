@@ -4,5 +4,5 @@
 # ==============================================================================
 MARIADB_FIFODIR=/tmp/export_homeassistant_database_fifodir
 
-/command/s6-ftrig-notify ${MARIADB_FIFODIR} "e"
-/command/s6-ftrig-wait -t 180000 ${MARIADB_FIFODIR} "E"
+s6-ftrig-notify ${MARIADB_FIFODIR} "e"
+s6-ftrig-wait -t 180000 ${MARIADB_FIFODIR} "E"

@@ -2,9 +2,8 @@
 # ==============================================================================
 # Export homeassistant database content
 # ==============================================================================
-TMPFS_MNT=/tmp
-MARIADB_DATA=${TMPFS_MNT}/databases
-MARIADB_DUMP=/data/homeassistant-database-dump.sql.gz
+MARIADB_DATA=$(</etc/MARIADB_DATA)
+MARIADB_DUMP=$(</etc/MARIADB_DUMP)
 
 if bashio::config.exists "retention.enabled" && bashio::config.true "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     exec 4> >(mysql)

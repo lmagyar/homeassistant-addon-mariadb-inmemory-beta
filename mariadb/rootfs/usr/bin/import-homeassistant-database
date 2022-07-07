@@ -2,9 +2,8 @@
 # ==============================================================================
 # Import homeassistant database content
 # ==============================================================================
-TMPFS_MNT=/tmp
-MARIADB_DATA=${TMPFS_MNT}/databases
-MARIADB_DUMP=/data/homeassistant-database-dump.sql.gz
+MARIADB_DATA=$(</etc/MARIADB_DATA)
+MARIADB_DUMP=$(</etc/MARIADB_DUMP)
 
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
@@ -12,7 +11,7 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
             bashio::log.warning "Importing last known databases content skipped, no dump file found"
         else
             bashio::log.info "Last known database content time stamp is $(stat ${MARIADB_DUMP} -c %y)"
-            bashio::log.info "Importing databases content..."
+            bashio::log.info "Importing database content..."
             gzip -d ${MARIADB_DUMP} -c | mysql homeassistant
         fi
     else
