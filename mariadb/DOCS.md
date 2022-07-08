@@ -122,7 +122,7 @@ Even this is an in-memory database, this option enables to export the `homeassis
 - the database dump is **gzip-ed** before written to the storage to minimize SD-card wear
 - after a power failure, when the add-on is restarted, it will import the last known exported database content
 
-If enabled the add-on will
+If enabled (default) the add-on will
 - export the database content before each backup and when stopped (restarted)
 - import the database content when started (restarted)
 

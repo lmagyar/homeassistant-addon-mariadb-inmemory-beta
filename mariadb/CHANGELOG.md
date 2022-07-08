@@ -2,14 +2,15 @@
 
 ## 2.5.0.0 (forked)
 
+**New function**: See documentation on how to automatically export and reimport the database content on restart or update.
+
 - Merge upstream changes
-- Upgrade Alpine Linux to 3.16
+- Sign add-on with Codenotary Community Attestation Service (CAS)
 - Export homeassistant database on add-on backup and stop, import homeassistant database on add-on start
 
 ## 2.5.0
 
-- ~Upgrade Alpine Linux to 3.15~ already implemented
-- Sign add-on with Codenotary Community Attestation Service (CAS)
+- Update alpine to 3.16 and s6 to v3
 
 ## 2.4.0.24 (forked)
 
