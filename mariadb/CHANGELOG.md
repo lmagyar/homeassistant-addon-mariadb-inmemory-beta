@@ -2,11 +2,9 @@
 
 ## 2.5.0.0 (forked)
 
-**New function**: See documentation on how to automatically export and reimport the database content on restart or update.
-
 - Merge upstream changes
 - Sign add-on with Codenotary Community Attestation Service (CAS)
-- Export homeassistant database on add-on backup and stop, import homeassistant database on add-on start
+- **New function**: Export homeassistant database on add-on backup and stop, import homeassistant database on add-on start (See documentation on how to automatically export and reimport the database content on restart or update)
 
 ## 2.5.0
 
