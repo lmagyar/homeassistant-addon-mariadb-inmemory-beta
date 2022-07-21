@@ -2,13 +2,13 @@
 # ==============================================================================
 # Start MariaDB-backup service
 # ==============================================================================
-MARIADB_FIFODIR=/tmp/export_homeassistant_database_fifodir
+ADDON_EVENTS=$(</etc/ADDON_EVENTS)
 
-s6-mkfifodir ${MARIADB_FIFODIR}
+s6-mkfifodir ${ADDON_EVENTS}
 
 while :
 do
-    s6-ftrig-wait ${MARIADB_FIFODIR} "e" > /dev/null
+    s6-ftrig-wait ${ADDON_EVENTS} "e" > /dev/null
     export-homeassistant-database
-    s6-ftrig-notify ${MARIADB_FIFODIR} "E"
+    s6-ftrig-notify ${ADDON_EVENTS} "E"
 done
