@@ -1,0 +1,8 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Call export homeassistant database content
+# ==============================================================================
+MARIADB_FIFODIR=/tmp/export_homeassistant_database_fifodir
+
+s6-ftrig-notify ${MARIADB_FIFODIR} "e"
+s6-ftrig-wait -t 180000 ${MARIADB_FIFODIR} "E" > /dev/null
