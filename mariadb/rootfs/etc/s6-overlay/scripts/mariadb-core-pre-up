@@ -12,6 +12,7 @@ bashio::log.info "Change tmpfs size to ${TMPFS_SIZE}"
 mount -o remount,size=${TMPFS_SIZE} tmpfs ${TMPFS_MNT}
 
 # Init mariadb
+mkdir /run/mysqld
 if ! bashio::fs.directory_exists "${MARIADB_DATA}"; then
     bashio::log.info "Create a new mariadb initial system"
     mysql_install_db --user=root --datadir="${MARIADB_DATA}" --skip-name-resolve --skip-test-db > /dev/null
