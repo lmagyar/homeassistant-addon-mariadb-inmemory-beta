@@ -10,7 +10,6 @@ RUN apk add --no-cache \
 
 ENV \
     LD_PRELOAD="/usr/local/lib/libjemalloc.so.2" \
-    S6_SERVICES_GRACETIME=180000
 
 # Copy data
 COPY rootfs /

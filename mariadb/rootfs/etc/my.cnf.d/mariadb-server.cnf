@@ -1,6 +1,7 @@
 [mysqld]
 port=3306
 log_error=mariadb.err
+socket=/tmp/mariadb.sock
 
 # Persistent storage location
 datadir=/tmp/databases
