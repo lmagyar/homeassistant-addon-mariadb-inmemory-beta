@@ -1,5 +1,5 @@
 ---
-version: 2.5.0.0-rc42
+version: 2.5.0.0-rc43
 homeassistant: 2022.6.1
 slug: mariadb-beta
 name: "[BETA] In-memory MariaDB"
@@ -17,7 +17,8 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-backup_pre: call-export-homeassistant-database
+backup_pre: /command/s6-svc -wu -u /run/service/mariadb-backup/
+backup_post: /command/s6-svc -wd -d /run/service/mariadb-backup/
 image: lmagyar/{arch}-addon-mariadb-inmemory
 init: false
 options:
