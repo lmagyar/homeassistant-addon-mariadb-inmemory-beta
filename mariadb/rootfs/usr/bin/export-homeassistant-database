@@ -11,8 +11,7 @@ if bashio::config.exists "retention.enabled" && bashio::config.true "retention.e
     bashio::log.info "MariaDB tables locked"
 
     bashio::log.info "Exporting database content..."
-    mysqldump homeassistant --ignore-table=homeassistant.schema_changes \
-            --skip-lock-tables --skip-add-drop-table --no-create-info --skip-add-locks --complete-insert --insert-ignore \
+    mysqldump homeassistant --skip-lock-tables --skip-add-drop-table --skip-add-locks --complete-insert --insert-ignore \
         | gzip -9 > ${MARIADB_DUMP}
 
     echo "UNLOCK TABLES;" >&4
