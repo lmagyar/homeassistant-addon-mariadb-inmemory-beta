@@ -8,11 +8,12 @@ MARIADB_DUMP=$(</etc/MARIADB_DUMP)
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
         if ! bashio::fs.file_exists "${MARIADB_DUMP}"; then
-            bashio::log.warning "Importing last known databases content skipped, no dump file found"
+            bashio::log.warning "Importing last known database content skipped, no dump file found"
         else
             bashio::log.info "Last known database content time stamp is $(stat ${MARIADB_DUMP} -c %y)"
             bashio::log.info "Importing database content..."
-            gzip -d ${MARIADB_DUMP} -c | mysql homeassistant
+            gzip -d ${MARIADB_DUMP} -c
+                | mysql homeassistant
         fi
     else
         if bashio::fs.file_exists "${MARIADB_DUMP}"; then
