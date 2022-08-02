@@ -1,0 +1,8 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Start crond service
+# ==============================================================================
+
+# Start crond
+bashio::log.info "Starting crond"
+crond -f
