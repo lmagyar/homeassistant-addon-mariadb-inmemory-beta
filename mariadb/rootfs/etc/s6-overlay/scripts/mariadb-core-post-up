@@ -2,6 +2,8 @@
 # ==============================================================================
 # Post-start initialization of  MariaDB service
 # ==============================================================================
+MARIADB_DATA=$(</etc/MARIADB_DATA)
+MARIADB_DUMP=$(</etc/MARIADB_DUMP)
 
 bashio::log.info "Check data integrity and fix corruptions"
 mysqlcheck --no-defaults --databases mysql --fix-db-names --fix-table-names || true
@@ -37,8 +39,30 @@ for database in $(bashio::config "databases"); do
     mysql -e "CREATE DATABASE ${database};" 2> /dev/null || true
 done
 
-# Import database content
-import-homeassistant-database
+# Import database structure
+IMPORT_DATABASE_CONTENT=false
+if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
+    if bashio::config.true "retention.enabled"; then
+        if ! bashio::fs.file_exists "${MARIADB_DUMP}-schema.sql.gz"; then
+            bashio::log.warning "Importing last known database content skipped, no dump file found"
+        else
+            bashio::log.info "Last known database content time stamp is $(stat ${MARIADB_DUMP}-schema.sql.gz -c %y)"
+            bashio::log.info "Importing database structure"
+            gzip -d ${MARIADB_DUMP}-schema.sql.gz -c \
+                | mysql homeassistant
+            gzip -d ${MARIADB_DUMP}-recorder.sql.gz -c \
+                | mysql homeassistant
+            IMPORT_DATABASE_CONTENT=true
+        fi
+    else
+        if bashio::fs.file_exists "${MARIADB_DUMP}"; then
+            rm ${MARIADB_DUMP}-schema.sql.gz
+            rm ${MARIADB_DUMP}-recorder.sql.gz
+            rm ${MARIADB_DUMP}-data.sql.gz
+            bashio::log.info "Data retention is explicitly turned off, unused exported database content is removed"
+        fi
+    fi
+fi
 
 # Init logins
 bashio::log.info "Ensure users exists and are updated"
@@ -96,4 +120,11 @@ if bashio::services.publish "mysql" "${PAYLOAD}"; then
     bashio::log.info "Successfully sent service information to Home Assistant."
 else
     bashio::log.warning "Service message to Home Assistant failed!"
+fi
+
+# Import database content
+if bashio::var.true "${IMPORT_DATABASE_CONTENT}"; then
+    bashio::log.info "Importing database content"
+    gzip -d ${MARIADB_DUMP}-data.sql.gz -c \
+        | mysql homeassistant
 fi
