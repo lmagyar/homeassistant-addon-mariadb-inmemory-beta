@@ -55,10 +55,10 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
             IMPORT_DATABASE_CONTENT=true
         fi
     else
-        if bashio::fs.file_exists "${MARIADB_DUMP}"; then
-            rm ${MARIADB_DUMP}-schema.sql.gz
-            rm ${MARIADB_DUMP}-recorder.sql.gz
-            rm ${MARIADB_DUMP}-data.sql.gz
+        if bashio::fs.file_exists "${MARIADB_DUMP}-schema.sql.gz"; then
+            rm -f ${MARIADB_DUMP}-schema.sql.gz
+            rm -f ${MARIADB_DUMP}-recorder.sql.gz
+            rm -f ${MARIADB_DUMP}-data.sql.gz
             bashio::log.info "Data retention is explicitly turned off, unused exported database content is removed"
         fi
     fi
