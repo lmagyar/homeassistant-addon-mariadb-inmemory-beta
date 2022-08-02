@@ -3,6 +3,4 @@
 # Start crond service
 # ==============================================================================
 
-# Start crond
-bashio::log.info "Starting crond"
-crond -f
+exec crond -f
