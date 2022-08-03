@@ -5,7 +5,7 @@
 TMPFS_MNT=/tmp
 ADDON_EVENTS=${TMPFS_MNT}/events
 MARIADB_DATA=${TMPFS_MNT}/databases
-MARIADB_DUMP=/data/homeassistant-database-dump
+MARIADB_DUMP=/data/homeassistant-database-dump-TYPE.sql.gz
 EXPORT_IMPORT_DATABASE_CONTENT=false
 
 # Save variables
