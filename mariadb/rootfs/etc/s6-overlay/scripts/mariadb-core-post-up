@@ -4,6 +4,7 @@
 # ==============================================================================
 MARIADB_DATA=$(</etc/MARIADB_DATA)
 MARIADB_DUMP=$(</etc/MARIADB_DUMP)
+EXPORT_IMPORT_DATABASE_CONTENT=$(</etc/EXPORT_IMPORT_DATABASE_CONTENT)
 
 bashio::log.info "Check data integrity and fix corruptions"
 mysqlcheck --no-defaults --databases mysql --fix-db-names --fix-table-names || true
@@ -40,9 +41,9 @@ for database in $(bashio::config "databases"); do
 done
 
 # Import database structure
-IMPORT_DATABASE_CONTENT=false
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
+        EXPORT_IMPORT_DATABASE_CONTENT=true
         if ! bashio::fs.file_exists "${MARIADB_DUMP}-schema.sql.gz"; then
             bashio::log.warning "Importing last known database content skipped, no dump file found"
         else
@@ -52,7 +53,6 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
                 | mysql homeassistant
             gzip -d ${MARIADB_DUMP}-recorder.sql.gz -c \
                 | mysql homeassistant
-            IMPORT_DATABASE_CONTENT=true
         fi
     else
         if bashio::fs.file_exists "${MARIADB_DUMP}-schema.sql.gz"; then
@@ -123,8 +123,11 @@ else
 fi
 
 # Import database content
-if bashio::var.true "${IMPORT_DATABASE_CONTENT}"; then
+if [[ "${EXPORT_IMPORT_DATABASE_CONTENT}" = "true" ]]; then
     bashio::log.info "Importing database content"
     gzip -d ${MARIADB_DUMP}-data.sql.gz -c \
         | mysql homeassistant
 fi
+
+# Save variables
+echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /etc/EXPORT_IMPORT_DATABASE_CONTENT

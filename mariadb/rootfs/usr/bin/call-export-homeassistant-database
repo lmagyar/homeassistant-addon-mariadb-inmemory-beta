@@ -1,6 +1,6 @@
 #!/command/with-contenv bashio
 # ==============================================================================
-# Call export homeassistant database content
+# Call export homeassistant database
 # ==============================================================================
 ADDON_EVENTS=$(</etc/ADDON_EVENTS)
 
