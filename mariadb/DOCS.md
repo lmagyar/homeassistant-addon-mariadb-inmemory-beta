@@ -14,8 +14,8 @@
  
 > **Note:** If you update or restart the add-on, please stop HA core to avoid error messages that the database is not available (during plain backup, stopping HA core is not necessary). How to do it:
 > - \> ha core stop
-> - \> ha bk new --addons 45207088_mariadb
-> - \> ha ad update 45207088_mariadb
+> - \> ha backup new --addons 45207088_mariadb
+> - \> ha addons update 45207088_mariadb
 > - \> ha core start
 
 ![Warning][warning_stripe]
