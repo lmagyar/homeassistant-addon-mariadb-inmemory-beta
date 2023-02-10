@@ -17,9 +17,8 @@ jobs:
       uses: home-assistant/builder@2022.11.0
       with:
         args: |
-          --test \
-          --no-cache \
           --no-latest \
+          --test \
           --${{ matrix.arch }} \
           --target mariadb
       env:
