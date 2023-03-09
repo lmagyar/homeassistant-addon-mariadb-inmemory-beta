@@ -109,9 +109,6 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
     fi
 fi
 
-# extra delay for test
-sleep 120
-
 # Init logins
 bashio::log.info "Ensure users exists and are updated"
 for login in $(bashio::config "logins|keys"); do
