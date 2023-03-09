@@ -7,18 +7,25 @@ MARIADB_DUMP=$(</etc/MARIADB_DUMP)
 MARIADB_DUMP_FINISHED=$(</etc/MARIADB_DUMP_FINISHED)
 EXPORT_IMPORT_DATABASE_CONTENT=$(</etc/EXPORT_IMPORT_DATABASE_CONTENT)
 
+function execute_without_error_messages() {
+    local current_log_level="${__BASHIO_LOG_LEVEL}"
+    bashio::log.level fatal
+    local exit_code=0
+    $@ || exit_code=$?
+    bashio::log.level ${__BASHIO_LOG_LEVELS[${current_log_level}]}
+    return ${exit_code}
+}
+
+# Delete service information from the Supervisor
+if execute_without_error_messages bashio::services.delete "mysql"; then
+    bashio::log.info "Successfully deleted service information from Home Assistant."
+fi
+
 bashio::log.info "Check data integrity and fix corruptions"
 mysqlcheck --no-defaults --databases mysql --fix-db-names --fix-table-names || true
 mysqlcheck --no-defaults --databases mysql --check --check-upgrade --auto-repair || true
 mysqlcheck --no-defaults --all-databases --skip-database=mysql --fix-db-names --fix-table-names || true
 mysqlcheck --no-defaults --all-databases --skip-database=mysql --check --check-upgrade --auto-repair || true
-
-# Send service information to the Supervisor
-if bashio::services.delete "mysql"; then
-    bashio::log.info "Successfully deleted service information from Home Assistant."
-else
-    bashio::log.warning "Service message to Home Assistant failed!"
-fi
 
 bashio::log.info "Ensuring internal database upgrades are performed"
 mysql_upgrade --silent
@@ -164,7 +171,7 @@ PAYLOAD=$(\
 if bashio::services.publish "mysql" "${PAYLOAD}"; then
     bashio::log.info "Successfully sent service information to Home Assistant."
 else
-    bashio::log.warning "Service message to Home Assistant failed!"
+    bashio::log.error "Service message to Home Assistant failed!"
 fi
 
 # Save variables
