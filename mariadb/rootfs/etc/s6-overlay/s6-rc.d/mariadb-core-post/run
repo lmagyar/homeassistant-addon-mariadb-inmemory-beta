@@ -17,9 +17,7 @@ function execute_without_error_messages() {
 }
 
 # Delete service information from the Supervisor
-if execute_without_error_messages bashio::services.delete "mysql"; then
-    bashio::log.info "Successfully deleted service information from Home Assistant."
-fi
+execute_without_error_messages bashio::services.delete "mysql"
 
 bashio::log.info "Check data integrity and fix corruptions"
 mysqlcheck --no-defaults --databases mysql --fix-db-names --fix-table-names || true
@@ -168,11 +166,7 @@ PAYLOAD=$(\
         username "service" \
         password "${SECRET}"
 )
-if bashio::services.publish "mysql" "${PAYLOAD}"; then
-    bashio::log.info "Successfully sent service information to Home Assistant."
-else
-    bashio::log.error "Service message to Home Assistant failed!"
-fi
+bashio::services.publish "mysql" "${PAYLOAD}"
 
 # Save variables
 echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /etc/EXPORT_IMPORT_DATABASE_CONTENT
