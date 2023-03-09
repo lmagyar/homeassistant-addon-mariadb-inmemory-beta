@@ -12,7 +12,7 @@
 >
 > **Even this is an in-memory database, it can automatically export (from memory to SD card) the `homeassistant` database's content during backup, update, restart or even periodically, and can automatically import (from SD card to memory) the content when the add-on starts again**. The database dump is **gzip-ed** before written to the storage to minimize SD-card wear.
 >
-> Though it won't protect you from power failures. After a power failure, when the add-on is restarted, it will import the last known exported database content.
+> Though it won't protect you from power failures. After a power failure, when the add-on is restarted, it will import the last known exported database content. So when eg. daily periodic export (from memory to SD card) is enabled, you will loose the latest sensory data within that day, but your long term statistics information will remain mostly intact.
  
 > **Note:** If you update or restart the add-on, please stop HA core to avoid error messages that the database is not available (during plain backup, stopping HA core is not necessary). How to do it:
 > - \> ha core stop
