@@ -231,6 +231,8 @@ Example Home Assistant configuration:
 ```yaml
 recorder:
   db_url: mysql://homeassistant:PASSWORD@45207088-mariadb/homeassistant?charset=utf8mb4
+  db_max_retries: 20
+  db_retry_wait: 15
   auto_purge: false
   exclude:
     event_types:
@@ -238,6 +240,14 @@ recorder:
   include:
     entities:
       - <the entity ids you really need>
+
+logger:
+  default: warning
+  filters:
+    homeassistant.components.recorder.core:
+      - 'Error during connection setup: .MySQLdb.OperationalError. .2002' # Can't connect to MySQL server on '45207088_mariadb'
+      - 'Error during connection setup: .MySQLdb.OperationalError. .1130' # Host '172.30.32.1' is not allowed to connect to this MariaDB server
+      - 'Error during connection setup: .MySQLdb.OperationalError. .1044' # Access denied for user 'homeassistant'@'%' to database 'homeassistant'
 
 automation:
   - alias: Auto purge with repack
@@ -263,7 +273,7 @@ automation:
 >
 > - Don't use `auto_purge`, regular auto purge does not repack the database files, they slowly grow because of fragmentation (new data will not fill perfectly the temporarily unused space of deleted/purged data). Instead call `recorder.purge` service with automation with `repack: true` service data.
 > - Exclude all `call_service` entries from the database! These fill up the database really fast with all the parameters to the service calls, MQTT messages, etc.
->
+> - Let the recorder to wait for the database to import the last known database content from SD card to memory during Home Assistant startup (that can take up to a few minutes on large databases), use the recorder's `db_max_retry` and `db_retry_wait` paramaters to wait for max. 5 minutes, and use the logger's `filters` parameter to filter out the recorder's error messages when it waits for the database to be ready.
 > - See History or use eg. HeidiSQL, DBeaver, BeeKeeper-Studio to access the database and analyze it's content. Search for the entries you don't need, but fill up the database!
 
 ## Support

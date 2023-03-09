@@ -2,7 +2,25 @@
 
 ## 2.5.2.2 (forked)
 
-- Finish importing whole database before enabling external acess
+**Important:** Add the following lines to the Home Assistant configuration:
+
+```
+recorder:
+  db_max_retries: 20
+  db_retry_wait: 15
+
+logger:
+  default: warning
+  filters:
+    homeassistant.components.recorder.core:
+      - 'Error during connection setup: .MySQLdb.OperationalError. .2002'
+      - 'Error during connection setup: .MySQLdb.OperationalError. .1130'
+      - 'Error during connection setup: .MySQLdb.OperationalError. .1044'
+```
+
+For more details see the documentation.
+
+- Finish importing the whole database before enabling external access
 - Bump base image to 2023.02.0
 
 ## 2.5.2.1 (forked)
