@@ -1,7 +1,8 @@
 # Changelog
 
-## vNext (forked)
+## 2.5.2.2 (forked)
 
+- Finish importing whole database before enabling external acess
 - Bump base image to 2023.02.0
 
 ## 2.5.2.1 (forked)

@@ -13,6 +13,13 @@ mysqlcheck --no-defaults --databases mysql --check --check-upgrade --auto-repair
 mysqlcheck --no-defaults --all-databases --skip-database=mysql --fix-db-names --fix-table-names || true
 mysqlcheck --no-defaults --all-databases --skip-database=mysql --check --check-upgrade --auto-repair || true
 
+# Send service information to the Supervisor
+if bashio::services.delete "mysql"; then
+    bashio::log.info "Successfully deleted service information from Home Assistant."
+else
+    bashio::log.warning "Service message to Home Assistant failed!"
+fi
+
 bashio::log.info "Ensuring internal database upgrades are performed"
 mysql_upgrade --silent
 
@@ -76,7 +83,7 @@ else
     rm -f ${MARIADB_DUMP/TYPE/data2}.tmp
 fi
 
-# Import database structure
+# Import database structure and content
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
         EXPORT_IMPORT_DATABASE_CONTENT=true
@@ -84,10 +91,12 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
             bashio::log.warning "Importing last known database content skipped, no dump file found"
         else
             bashio::log.info "Last known database content time stamp is $(stat ${MARIADB_DUMP/TYPE/schema} -c %y)"
-            bashio::log.info "Importing database structure and partial content"
+            bashio::log.info "Importing database structure and content"
             gzip -d ${MARIADB_DUMP/TYPE/schema} -c \
                 | mysql homeassistant
             gzip -d ${MARIADB_DUMP/TYPE/data1} -c \
+                | mysql homeassistant
+            gzip -d ${MARIADB_DUMP/TYPE/data2} -c \
                 | mysql homeassistant
         fi
     else
@@ -99,6 +108,9 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
         fi
     fi
 fi
+
+# extra delay for test
+sleep 120
 
 # Init logins
 bashio::log.info "Ensure users exists and are updated"
@@ -156,15 +168,6 @@ if bashio::services.publish "mysql" "${PAYLOAD}"; then
     bashio::log.info "Successfully sent service information to Home Assistant."
 else
     bashio::log.warning "Service message to Home Assistant failed!"
-fi
-
-# Import database content
-if [[ "${EXPORT_IMPORT_DATABASE_CONTENT}" = "true" ]]; then
-    if bashio::fs.file_exists "${MARIADB_DUMP/TYPE/data2}"; then
-        bashio::log.info "Importing database content"
-        gzip -d ${MARIADB_DUMP/TYPE/data2} -c \
-            | mysql homeassistant
-    fi
 fi
 
 # Save variables
