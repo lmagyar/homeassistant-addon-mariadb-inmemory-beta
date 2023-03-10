@@ -21,6 +21,7 @@ logger:
 For more details see the documentation.
 
 - Finish importing the whole database before enabling external access
+- Update to MariaDB version 10.6.12
 - Bump base image to 2023.02.0
 
 ## 2.5.2.1 (forked)
