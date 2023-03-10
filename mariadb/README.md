@@ -38,7 +38,7 @@ If you are trying to minimize your SD-card's wear, give this add-on a try.
 
 Though it won't protect you from power failures. After a power failure, when the add-on is restarted, it will import the last known exported database content. So when eg. daily periodic export (from memory to SD card) is enabled, you will loose the latest sensory data within that day, but your long term statistics information will remain mostly intact.
 
-The recorder's `commit_interval` parameter is not enough to drastically reduce database and storage (SD card) writes: even if the `commit_interval` is very high, eg. 10 minutes, recorder will still commit in each 3-5 minutes. So with `commit_interval` you can't limit your database and storage (SD card) writes to hourly or daily writes. With this add-on you can limit it to only a few MB-s eg. daily, though with the tradeoff, that you have some chance of data loss. 
+The recorder's `commit_interval` parameter is not enough to drastically reduce database and storage (SD card) writes: even if the `commit_interval` is very high, eg. 10 minutes, recorder will still commit in each 5 minutes for statistics generation. So with `commit_interval` you can't limit your database and storage (SD card) writes to hourly or daily writes. With this add-on you can limit it to only a few MB-s eg. daily, though with the tradeoff, that you have some chance of data loss. 
 
 This version uses **tmpfs** to store MariaDB databases in-memory. The default ~~InnoDB~~ storage engine is replaced with **Aria** storage engine (because InnoDB storage engine wastes a great amount of disk space, and Memory storage engine can't handle TEXT columns).
 
