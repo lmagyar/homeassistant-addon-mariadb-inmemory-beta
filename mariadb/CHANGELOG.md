@@ -2,7 +2,7 @@
 
 ## 2.5.2.2 (forked)
 
-**Important:** Add the following lines to the Home Assistant configuration:
+**Important:** Add the following lines to the Home Assistant configuration (and do not delete what is already there):
 
 ```
 recorder:
