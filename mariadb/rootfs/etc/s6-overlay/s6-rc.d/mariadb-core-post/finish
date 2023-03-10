@@ -4,6 +4,7 @@
 # ==============================================================================
 
 # Delete service information from the Supervisor
+bashio::log.info "Deleting service information from Home Assistant."
 bashio::services.delete "mysql"
 
 # Export database content
