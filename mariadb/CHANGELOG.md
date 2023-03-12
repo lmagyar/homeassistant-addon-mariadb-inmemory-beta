@@ -21,6 +21,7 @@ logger:
 For more details see the documentation.
 
 - Finish importing the whole database before enabling external access
+- Create default schema after initial setup to force using Aria instead of InnoDB
 - Update to MariaDB version 10.6.12
 - Bump base image to 2023.02.0
 
