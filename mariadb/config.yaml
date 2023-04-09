@@ -1,6 +1,5 @@
 ---
 version: 2.5.2.3-rc01
-homeassistant: 2022.6.1
 slug: mariadb-beta
 name: "[BETA] In-memory MariaDB"
 description: "[BETA] An in-memory SQL database server"
