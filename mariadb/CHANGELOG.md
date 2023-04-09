@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023.4.0
+
+- New versioning scheme
+
 ## 2.5.2.4 (forked)
 
 - Bugfix for image location
