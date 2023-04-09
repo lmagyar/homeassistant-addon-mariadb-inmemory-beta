@@ -2,6 +2,9 @@
 
 ## vNext (forked)
 
+- Use InnoDB as storage engine
+- Convert old Aria schema content exports into InnoDB schema
+- Don't create default schema on startup
 - Update Add-on base image to v13.2.0
 
 ## 2.5.2.2 (forked)
