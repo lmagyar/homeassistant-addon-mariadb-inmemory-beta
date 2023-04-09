@@ -4,6 +4,7 @@
 
 - New versioning scheme
 - Require Home Assistant 2023.4.0 or newer
+- Remove any pre 2023.4.0 backward compatibility with exported database content (Aria storage engine is not used anymore)
 
 ## 2.5.2.4 (forked)
 
