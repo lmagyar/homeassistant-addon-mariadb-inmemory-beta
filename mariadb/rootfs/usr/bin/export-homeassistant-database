@@ -43,7 +43,7 @@ if [[ "${EXPORT_IMPORT_DATABASE_CONTENT}" = "true" ]]; then
         | gzip -9 > ${MARIADB_DUMP/TYPE/data1}.tmp
 
     # dump tables to be imported next, it also dumps any new table that is unknown for this script
-    tables_to_dump=("statistics_short_term" "statistics" "state_attributes" "states" "event_data" "events")
+    tables_to_dump=("statistics_short_term" "statistics" "state_attributes" "states_meta" "states" "event_data" "event_types" "events")
     remove tables tables_to_dump
     mysqldump homeassistant $(printf '%s ' "${tables_to_dump[@]}") $(printf '%s ' "${tables[@]}") \
             --skip-lock-tables --skip-add-drop-table --no-create-info --skip-add-locks --complete-insert --insert-ignore \
