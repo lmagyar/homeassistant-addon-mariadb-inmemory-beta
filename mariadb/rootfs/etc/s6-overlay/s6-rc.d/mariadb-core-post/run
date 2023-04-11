@@ -95,6 +95,8 @@ if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${M
                 | mysql homeassistant
             gzip -d ${MARIADB_DUMP/TYPE/data2} -c \
                 | mysql homeassistant
+            # Bugfix for v2.5.2.4 unnecessary schema version insertion
+            mysql homeassistant -e "DELETE FROM schema_changes WHERE change_id=1 AND schema_version=35;"
         fi
     else
         if bashio::fs.file_exists "${MARIADB_DUMP/TYPE/schema}"; then
