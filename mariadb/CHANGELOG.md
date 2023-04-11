@@ -3,6 +3,7 @@
 ## 2023.4.0
 
 - New versioning scheme
+- Require Home Assistant 2023.4.0 or newer
 
 ## 2.5.2.4 (forked)
 
