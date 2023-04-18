@@ -2,10 +2,10 @@
 # ==============================================================================
 # Post-start initialization of  MariaDB service
 # ==============================================================================
-MARIADB_DATA=$(</etc/MARIADB_DATA)
-MARIADB_DUMP=$(</etc/MARIADB_DUMP)
-MARIADB_DUMP_FINISHED=$(</etc/MARIADB_DUMP_FINISHED)
-EXPORT_IMPORT_DATABASE_CONTENT=$(</etc/EXPORT_IMPORT_DATABASE_CONTENT)
+MARIADB_DATA=$(</tmp/run/MARIADB_DATA)
+MARIADB_DUMP=$(</tmp/run/MARIADB_DUMP)
+MARIADB_DUMP_FINISHED=$(</tmp/run/MARIADB_DUMP_FINISHED)
+EXPORT_IMPORT_DATABASE_CONTENT=$(</tmp/run/EXPORT_IMPORT_DATABASE_CONTENT)
 
 function execute_without_error_messages() {
     local current_log_level="${__BASHIO_LOG_LEVELS[${__BASHIO_LOG_LEVEL}]}"
@@ -164,4 +164,4 @@ bashio::log.info "Sending service information to Home Assistant"
 bashio::services.publish "mysql" "${PAYLOAD}"
 
 # Save variables
-echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /etc/EXPORT_IMPORT_DATABASE_CONTENT
+echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /tmp/run/EXPORT_IMPORT_DATABASE_CONTENT

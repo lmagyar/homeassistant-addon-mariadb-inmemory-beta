@@ -2,7 +2,7 @@
 # ==============================================================================
 # Purge homeassistant statistics database
 # ==============================================================================
-STATISTICS_DUMP=$(</etc/STATISTICS_DUMP)
+STATISTICS_DUMP=$(</tmp/run/STATISTICS_DUMP)
 
 bashio::log.info "Purging statistics database"
 readonly database_timestamp=$(mysql homeassistant -Nse "SELECT UTC_TIMESTAMP();" 2> /dev/null)

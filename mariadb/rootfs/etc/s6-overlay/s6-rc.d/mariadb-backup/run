@@ -2,7 +2,7 @@
 # ==============================================================================
 # Start MariaDB-backup service
 # ==============================================================================
-ADDON_EVENTS=$(</etc/ADDON_EVENTS)
+ADDON_EVENTS=$(</tmp/run/ADDON_EVENTS)
 
 s6-mkfifodir ${ADDON_EVENTS}
 
