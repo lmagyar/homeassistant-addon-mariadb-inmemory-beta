@@ -11,10 +11,10 @@ STATISTICS_DUMP=/share/purged-statistics/purged-homeassistant-statistics-databas
 EXPORT_IMPORT_DATABASE_CONTENT=false
 
 # Save variables
-echo ${TMPFS_MNT} > /tmp/run/TMPFS_MNT
-echo ${ADDON_EVENTS} > /tmp/run/ADDON_EVENTS
-echo ${MARIADB_DATA} > /tmp/run/MARIADB_DATA
-echo ${MARIADB_DUMP} > /tmp/run/MARIADB_DUMP
-echo ${MARIADB_DUMP_FINISHED} > /tmp/run/MARIADB_DUMP_FINISHED
-echo ${STATISTICS_DUMP} > /tmp/run/STATISTICS_DUMP
-echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /tmp/run/EXPORT_IMPORT_DATABASE_CONTENT
+printf "${TMPFS_MNT}" > /var/run/s6/container_environment/TMPFS_MNT
+printf "${ADDON_EVENTS}" > /var/run/s6/container_environment/ADDON_EVENTS
+printf "${MARIADB_DATA}" > /var/run/s6/container_environment/MARIADB_DATA
+printf "${MARIADB_DUMP}" > /var/run/s6/container_environment/MARIADB_DUMP
+printf "${MARIADB_DUMP_FINISHED}" > /var/run/s6/container_environment/MARIADB_DUMP_FINISHED
+printf "${STATISTICS_DUMP}" > /var/run/s6/container_environment/STATISTICS_DUMP
+printf "${EXPORT_IMPORT_DATABASE_CONTENT}" > /var/run/s6/container_environment/EXPORT_IMPORT_DATABASE_CONTENT

@@ -2,7 +2,6 @@
 # ==============================================================================
 # Start MariaDB service
 # ==============================================================================
-MARIADB_DATA=$(</tmp/run/MARIADB_DATA)
 
 # Start mariadb
 bashio::log.info "Starting MariaDB"

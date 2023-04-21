@@ -2,8 +2,6 @@
 # ==============================================================================
 # Pre-start initialization of MariaDB service
 # ==============================================================================
-TMPFS_MNT=$(</tmp/run/TMPFS_MNT)
-MARIADB_DATA=$(</tmp/run/MARIADB_DATA)
 
 # Change tmpfs size to configured value
 TMPFS_SIZE=$(bashio::config "tmpfs.size")

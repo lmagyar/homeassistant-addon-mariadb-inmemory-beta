@@ -2,10 +2,6 @@
 # ==============================================================================
 # Post-start initialization of  MariaDB service
 # ==============================================================================
-MARIADB_DATA=$(</tmp/run/MARIADB_DATA)
-MARIADB_DUMP=$(</tmp/run/MARIADB_DUMP)
-MARIADB_DUMP_FINISHED=$(</tmp/run/MARIADB_DUMP_FINISHED)
-EXPORT_IMPORT_DATABASE_CONTENT=$(</tmp/run/EXPORT_IMPORT_DATABASE_CONTENT)
 
 function execute_without_error_messages() {
     local current_log_level="${__BASHIO_LOG_LEVELS[${__BASHIO_LOG_LEVEL}]}"
@@ -84,6 +80,7 @@ fi
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
         EXPORT_IMPORT_DATABASE_CONTENT=true
+        printf "${EXPORT_IMPORT_DATABASE_CONTENT}" > /var/run/s6/container_environment/EXPORT_IMPORT_DATABASE_CONTENT
         if ! bashio::fs.file_exists "${MARIADB_DUMP/TYPE/schema}"; then
             bashio::log.warning "Importing last known database content skipped, no dump file found"
         else
@@ -162,6 +159,3 @@ PAYLOAD=$(\
 )
 bashio::log.info "Sending service information to Home Assistant"
 bashio::services.publish "mysql" "${PAYLOAD}"
-
-# Save variables
-echo ${EXPORT_IMPORT_DATABASE_CONTENT} > /tmp/run/EXPORT_IMPORT_DATABASE_CONTENT

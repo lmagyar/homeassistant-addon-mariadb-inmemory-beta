@@ -2,9 +2,6 @@
 # ==============================================================================
 # Export homeassistant database
 # ==============================================================================
-MARIADB_DUMP=$(</tmp/run/MARIADB_DUMP)
-MARIADB_DUMP_FINISHED=$(</tmp/run/MARIADB_DUMP_FINISHED)
-EXPORT_IMPORT_DATABASE_CONTENT=$(</tmp/run/EXPORT_IMPORT_DATABASE_CONTENT)
 
 # remove $2 list from $1 list, modifies $1 list, pass arguments by name
 function remove() {
