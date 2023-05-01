@@ -1,6 +1,6 @@
 # Changelog
 
-## vNext
+## 2.5.2.5 (forked)
 
 - Export and import all databases, not only `homeassistant`
 - Update Add-on base image to v13.2.2
