@@ -123,7 +123,7 @@ have a **k**, **m**, or **g** suffix.
 > console to this add-on's container (or without Portainer add-on SSH into the
 > system, use `docker exec -it addon_45207088_mariadb /bin/bash`) and see the
 > container's file-system directly, use `df` or `ls` to check free space and
-> file sizes (database is located at `/tmp/databases`.
+> file sizes (databases are located at `/tmp/databases`.
 >
 > **Note:** The database occupies more space on tmpfs than you see in the
 > client. And it needs even more temporary space to `repack` tables after
