@@ -17,7 +17,7 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-backup_pre: call-export-homeassistant-database
+backup_pre: call-export-databases
 image: ghcr.io/lmagyar/{arch}-addon-mariadb-inmemory-beta
 init: false
 options:

@@ -4,7 +4,7 @@
 
 - Require Home Assistant 2023.4.0 or newer
 - Remove any pre 2023.4.0 backward compatibility with exported database content (Aria storage engine is not used anymore)
-- Use new table names from HA for export table order
+- Export and import all databases, not only `homeassistant`
 - Update Add-on base image to v13.2.2
 
 ## 2.5.2.4 (forked)

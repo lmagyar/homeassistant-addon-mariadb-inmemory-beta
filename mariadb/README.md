@@ -14,10 +14,10 @@ In-memory MariaDB database for Home Assistant.
 > trying to minimize your SD-card's wear, give this add-on a try.
 >
 > **Even this is an in-memory database, it can automatically export (from memory
-> to SD card) the `homeassistant` database's content during backup, update,
-> restart or even periodically, and can automatically import (from SD card to
-> memory) the content when the add-on starts again**. The database dump is
-> **gzip-ed** before written to the storage to minimize SD-card wear.
+> to SD card) the database's content during backup, update, restart or even
+> periodically, and can automatically import (from SD card to memory) the
+> content when the add-on starts again**. The database dump is **gzip-ed**
+> before written to the storage to minimize SD-card wear.
 >
 > Though it won't protect you from power failures completely. After a power
 > failure, when the add-on is restarted, it will import the last known exported

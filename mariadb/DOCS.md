@@ -12,10 +12,10 @@
 > trying to minimize your SD-card's wear, give this add-on a try.
 >
 > **Even this is an in-memory database, it can automatically export (from memory
-> to SD card) the `homeassistant` database's content during backup, update,
-> restart or even periodically, and can automatically import (from SD card to
-> memory) the content when the add-on starts again**. The database dump is
-> **gzip-ed** before written to the storage to minimize SD-card wear.
+> to SD card) the database's content during backup, update, restart or even
+> periodically, and can automatically import (from SD card to memory) the
+> content when the add-on starts again**. The database dump is **gzip-ed**
+> before written to the storage to minimize SD-card wear.
 >
 > Though it won't protect you from power failures completely. After a power
 > failure, when the add-on is restarted, it will import the last known exported
@@ -163,13 +163,12 @@ This section defines the data retention parameters.
 ### Option: `retention.enabled`
 
 Even this is an in-memory database, it can automatically export (from memory to
-SD card) the `homeassistant` database's content during backup, update, restart
-or even periodically, and can automatically import (from SD card to memory) the
-content when the add-on starts again. The database dump is gzip-ed before
-written to the storage to minimize SD-card wear.
+SD card) the database's content during backup, update, restart or even
+periodically, and can automatically import (from SD card to memory) the content
+when the add-on starts again. The database dump is gzip-ed before written to the
+storage to minimize SD-card wear.
 
 **Note:**
-- only the `homeassistant` database's content is exported and imported
 - the database dump is located in the /data folder, so it is part of the normal
   Home Assistant backup process
 - the database dump is **gzip-ed** before written to the storage to minimize
@@ -187,7 +186,7 @@ started (restarted).
 ### Option: `retention.periodic`
 
 This option helps to minimize data loss in case of power failure by periodically
-exporting the `homeassistant` database's content.
+exporting the database's content.
 
 Possible values:
 - disabled (default)
@@ -241,15 +240,6 @@ belonging to the add-on anymore).
 ### Option: `databases`
 
 Database name, e.g., `homeassistant`. Multiple are allowed.
-
-> ---
->
-> **Important!**
->
-> ---
->
-> Use the default database name `homeassistant` to automatically backup database
-> content.
 
 ### Option: `logins`
 
