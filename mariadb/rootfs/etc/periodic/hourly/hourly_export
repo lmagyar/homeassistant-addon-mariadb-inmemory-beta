@@ -1,6 +1,6 @@
 #!/command/with-contenv bashio
 # ==============================================================================
-# Export homeassistant database periodically
+# Export all databases periodically
 # ==============================================================================
 
 if bashio::config.true "retention.enabled" && bashio::config.equals "retention.periodic" "hourly"; then

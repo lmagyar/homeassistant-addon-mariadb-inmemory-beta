@@ -90,8 +90,8 @@ fi
 # Import all databases structure and content... (no connection is allowed until it is finished)
 if bashio::config.exists "retention.enabled" && bashio::fs.directory_exists "${MARIADB_DATA}/homeassistant"; then
     if bashio::config.true "retention.enabled"; then
-        EXPORT_IMPORT_DATABASES_CONTENT=true
-        printf "${EXPORT_IMPORT_DATABASES_CONTENT}" > /var/run/s6/container_environment/EXPORT_IMPORT_DATABASES_CONTENT
+        EXPORT_IMPORT_ALL_DATABASES_CONTENT=true
+        printf "${EXPORT_IMPORT_ALL_DATABASES_CONTENT}" > /var/run/s6/container_environment/EXPORT_IMPORT_ALL_DATABASES_CONTENT
         if ! bashio::fs.file_exists "${OLD_MARIADB_DUMP/TYPE/schema}" \
             && ! bashio::fs.file_exists "${MARIADB_DUMP}"
         then
