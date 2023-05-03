@@ -133,7 +133,7 @@ if bashio::config.exists "retention.enabled"; then
 fi
 
 # Init logins
-bashio::log.info "Ensure users exists and are updated"
+bashio::log.info "Ensure users exist and are updated"
 for login in $(bashio::config "logins|keys"); do
     USERNAME=$(bashio::config "logins[${login}].username")
     PASSWORD=$(bashio::config "logins[${login}].password")
