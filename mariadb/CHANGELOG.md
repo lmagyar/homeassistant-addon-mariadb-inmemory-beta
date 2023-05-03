@@ -1,5 +1,9 @@
 # Changelog
 
+## vNext (forked)
+
+- Use S6 service management from the official add-on for backup notifications instead of S6 fifodir
+
 ## 2.6.0
 
 - ~~Migrate add-on layout to S6 Overlay~~ (forked version already migrated it's layout)

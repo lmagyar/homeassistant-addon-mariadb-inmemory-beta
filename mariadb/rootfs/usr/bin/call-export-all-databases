@@ -1,8 +1,0 @@
-#!/command/with-contenv bashio
-# shellcheck shell=bash
-# ==============================================================================
-# Call export all databases
-# ==============================================================================
-
-s6-ftrig-notify ${ADDON_EVENTS} "e"
-s6-ftrig-wait -t 180000 ${ADDON_EVENTS} "E" > /dev/null

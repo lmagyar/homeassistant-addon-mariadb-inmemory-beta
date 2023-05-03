@@ -1,0 +1,12 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Export all databases for backups
+# ==============================================================================
+
+# Due to it is started by the supervisor calling the backup_pre: `/command/s6-rc -u change mariadb-export` command,
+# it's stdout won't be redirected automatically to the add-on's log
+exec &> /proc/1/fd/1
+
+# Export all databases content
+export-all-databases

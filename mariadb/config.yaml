@@ -17,7 +17,8 @@ privileged:
   - SYS_ADMIN
 map:
   - share:rw
-backup_pre: call-export-all-databases
+backup_post: /command/s6-rc -d change mariadb-export
+backup_pre: /command/s6-rc -u change mariadb-export
 image: ghcr.io/lmagyar/{arch}-addon-mariadb-inmemory-beta
 init: false
 options:
