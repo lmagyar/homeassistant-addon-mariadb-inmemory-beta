@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.0
+
+- ~~Migrate add-on layout to S6 Overlay~~ (forked version already migrated it's layout)
+- ~~Update to MariaDB version 10.6.12~~ (forked version already uses this MariaDB version)
+
 ## 2.5.2.5 (forked)
 
 - Export and import all databases, not only `homeassistant`
