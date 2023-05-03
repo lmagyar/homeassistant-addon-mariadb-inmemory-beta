@@ -65,4 +65,4 @@ schema:
 services:
   - mysql:provide
 startup: system
-timeout: 300
+timeout: 20
