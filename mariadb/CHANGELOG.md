@@ -1,5 +1,11 @@
 # Changelog
 
+## vNext (forked)
+
+- Update MariaDB to v10.11.3-r0
+- Update pwgen to v2.08-r3
+- Update Add-on base image to v14 (Update Alpine base image to v3.18.0)
+
 ## 2.6.1.0 (forked)
 
 - Use S6 service names from the official add-on
