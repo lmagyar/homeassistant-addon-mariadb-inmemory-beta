@@ -26,9 +26,3 @@ printf "${EXPORT_IMPORT_ALL_DATABASES_CONTENT}" > /var/run/s6/container_environm
 mkdir -p /share/bin || true
 cp -pf /usr/bin/update-mariadb-inmemory-beta-while-ha-core-restarted /share/bin/ || true
 cp -pf /usr/bin/restart-mariadb-inmemory-beta-while-ha-core-restarted /share/bin/ || true
-
-#### TEST ####
-echo "---- ENVIRONMENT ----"
-env
-echo "---- curl ----"
-curl --show-error --write-out '\n%{http_code}\n' --request "GET" -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" -H "Content-Type: application/json" -d "{}" "http://supervisor/supervisor/ping"
