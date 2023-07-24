@@ -5,9 +5,9 @@
 - Fix statistics data purge for new database schema
 - Fix database export durability with fsync
 - Internally store previous export in case storage (SD card) fails to execute fsync completely
-- Workaround for LOG_LEVEL environment variable superfluous newline character
+- Fix issue [#46](https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory/issues/46) (Table 'homeassistant.schema_changes' doesn't exist)
 - Update MariaDB to v10.11.4-r0
-- Update Add-on base image to v14.0.2 (Update Alpine base image to v3.18.2)
+- Update Add-on base image to v14.0.5 (Update Alpine base image to v3.18.2)
 - Sign add-on with Sigstore Cosign
 
 ## 2.6.1.0 (forked)
