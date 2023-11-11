@@ -1,5 +1,13 @@
 # Changelog
 
+## vNext (forked)
+
+***BREAKING CHANGES:***
+- Drop support for armhf & i386
+
+Nonbreaking changes:
+- Update Add-on base image to v14.3.1
+
 ## 2.6.1.2 (forked)
 
 - Update MariaDB to v10.11.5-r0
