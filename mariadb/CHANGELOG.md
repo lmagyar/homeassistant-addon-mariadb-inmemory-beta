@@ -6,6 +6,7 @@
 - Drop support for armhf & i386
 
 Nonbreaking changes:
+- Adds HEALTCHECK support
 - Update Add-on base image to v14.3.1
 
 ## 2.6.1.2 (forked)
