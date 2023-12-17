@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:15.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:15.0.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -17,4 +17,4 @@ RUN apk add --no-cache \
 COPY rootfs /
 
 HEALTHCHECK \
-    CMD healthcheck --connect --innodb_initialized --innodb_buffer_pool_loaded
+    CMD healthcheck --defaults-file=/home/healthcheck/.my.cnf --connect --innodb_initialized --innodb_buffer_pool_loaded
