@@ -18,13 +18,13 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v4
     - name: Login to ghcr.io
-      uses: docker/login-action@v3.0.0
+      uses: docker/login-action@v3.1.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Publish
-      uses: home-assistant/builder@2024.01.0
+      uses: home-assistant/builder@2024.03.5
       with:
         args: |
           --${{ matrix.arch }} \
