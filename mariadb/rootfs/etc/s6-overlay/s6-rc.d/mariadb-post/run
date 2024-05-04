@@ -221,6 +221,8 @@ echo -e "[mariadb-client]\\nport=3306\\nuser=healthcheck\\npassword=${SECRET}\\n
 # Flush privileges
 mysql -e "FLUSH PRIVILEGES;" 2> /dev/null || true
 
+echo 1111
+
 # Send service information to the Supervisor
 PAYLOAD=$(\
     bashio::var.json \
@@ -232,6 +234,10 @@ PAYLOAD=$(\
 bashio::log.info "Sending service information to Home Assistant"
 bashio::services.publish "mysql" "${PAYLOAD}"
 
+echo 2222
+
 # Report sensors at startup
 # No errors, there is a chance, that HA is not running
 #report-sensors &>/dev/null || true
+
+echo 3333
