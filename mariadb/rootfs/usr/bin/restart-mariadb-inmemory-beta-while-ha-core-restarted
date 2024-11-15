@@ -2,8 +2,8 @@ addon_slug=f48b086e_mariadb-beta
 addon_name="[BETA] In-memory MariaDB"
 set -e
 echo "Stopping HA core..."
-ha core stop --no-progress
+ha core stop
 echo -e "\nRestarting ${addon_name} add-on..."
-ha addons restart ${addon_slug} --no-progress
+ha addons restart ${addon_slug}
 echo -e "\nStarting HA core..."
-ha core start --no-progress
+ha core start
