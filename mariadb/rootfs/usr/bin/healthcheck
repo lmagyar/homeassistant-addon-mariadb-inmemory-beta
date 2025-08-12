@@ -1,12 +1,19 @@
 #!/command/with-contenv bashio
 # shellcheck shell=bash
 
-# Redirect healthchecks' output to the log
+# redirect healthchecks' output to the log
 exec &> /proc/1/fd/1
 
+readonly EXPORT_STARTED_TIMEOUT=300 # 5 minutes
+
+# EXPORT_STARTED_TIMESTAMP is in contenv at /var/run/s6/container_environment and updated by the export-all-databases script
 # LAST_REPORTED_HEALTH_STATE is in contenv at /var/run/s6/container_environment
 
-if ! mariadb-healthcheck --defaults-file=/home/healthcheck/.my.cnf --connect --innodb_initialized --innodb_buffer_pool_loaded
+# mutually exclusive lock with export-all-databases
+# if healthcheck runs during export, "flush tables with read lock" makes it fail, and the server will be restarted immediately, ie. during export
+# s6-setlock exits 1 if lock fails, healthcheck-worker exits 2 if healthcheck fails
+if ! s6-setlock -n /tmp/export-lock /usr/bin/healthcheck-worker 2>/dev/null && \
+  ( (($? == 2)) || (( $(date +"%s") - ${EXPORT_STARTED_TIMESTAMP:-0} > ${EXPORT_STARTED_TIMEOUT} )) )
 then
   # Unhealthy
   if ! bashio::var.equals "${LAST_REPORTED_HEALTH_STATE-}" "UNHEALTHY"; then

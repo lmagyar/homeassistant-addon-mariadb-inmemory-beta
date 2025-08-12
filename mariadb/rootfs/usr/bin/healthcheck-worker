@@ -1,0 +1,13 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# DO NOT CALL THIS SCRIPT DIRECTLY
+# ==============================================================================
+
+# redirect healthchecks' output to the log
+# this is to eliminate the effect of s6-setlock ... 2>/dev/null
+exec &> /proc/1/fd/1
+
+if ! mariadb-healthcheck --defaults-file=/home/healthcheck/.my.cnf --connect --innodb_initialized --innodb_buffer_pool_loaded; then
+    exit 2
+fi
