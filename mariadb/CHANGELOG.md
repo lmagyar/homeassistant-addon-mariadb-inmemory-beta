@@ -8,7 +8,7 @@ automatically.**
 
 ## vNext (forked)
 
-- Update Add-on base image to v18.0.0 (Update Alpine base image to v3.22.0)
+- Update Add-on base image to v18.1.0 (Update Alpine base image to v3.22.0)
 
 ## 2.7.2.1 (forked)
 
