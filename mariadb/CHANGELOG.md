@@ -6,7 +6,7 @@ necessary). **You can execute in the command line the**
 `/share/bin/update-mariadb-inmemory-while-ha-core-restarted` **script to do it
 automatically.**
 
-## vNext (forked)
+## 2.7.2.2 (forked)
 
 - Fix conflict on table locking between healthcheck and database export
 - Update Add-on base image to v18.1.0 (Update Alpine base image to v3.22.0)
