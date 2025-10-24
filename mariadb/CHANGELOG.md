@@ -9,7 +9,7 @@ automatically.**
 ## vNext (forked)
 
 - Update MariaDB to 11.4.8-r0
-- Update Add-on base image to v18.1.3
+- Update Add-on base image to v18.2.1
 
 ## 2.7.2.2 (forked)
 
