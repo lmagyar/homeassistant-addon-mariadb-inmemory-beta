@@ -11,6 +11,7 @@ automatically.**
 - Update MariaDB to 11.4.8-r0
 - Update Add-on base image to v18.2.1
 - Fix for add-on base image and bashio log changes, causing healthcheck messages to be not logged
+- Remove deprecated codenotary fields
 
 ## 2.7.2.2 (forked)
 
