@@ -1,6 +1,5 @@
 #!/command/with-contenv bashio
 # shellcheck shell=bash
-export LOG_FD
 # ==============================================================================
 # Export all databases periodically
 # ==============================================================================
