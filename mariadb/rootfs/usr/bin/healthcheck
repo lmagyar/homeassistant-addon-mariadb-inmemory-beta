@@ -1,5 +1,6 @@
 #!/command/with-contenv bashio
 # shellcheck shell=bash
+export LOG_FD
 
 # redirect healthchecks' output to the log
 exec &> /proc/1/fd/1
