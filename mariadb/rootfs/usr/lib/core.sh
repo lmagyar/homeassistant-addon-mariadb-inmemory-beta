@@ -1,4 +1,4 @@
-#!/command/with-contenv bashio
+#!/usr/bin/env bash
 # shellcheck shell=bash
 
 function log.error_or_warning() {
