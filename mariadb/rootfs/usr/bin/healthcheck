@@ -2,8 +2,11 @@
 # shellcheck shell=bash
 export LOG_FD
 
-# redirect healthchecks' output to the log
+# Redirect outputs to the log (&1 and &2 are not initialized by Docker)
 exec &> /proc/1/fd/1
+if [[ "${LOG_FD:-}" =~ ^[0-9]+$ ]]; then
+  eval "exec ${LOG_FD}>&1" || true
+fi
 
 readonly EXPORT_STARTED_TIMEOUT=300 # 5 minutes
 
