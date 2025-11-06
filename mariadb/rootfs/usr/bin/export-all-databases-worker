@@ -1,4 +1,4 @@
-#!/command/with-contenv bashio
+#!/usr/bin/env bashio
 # shellcheck shell=bash
 # ==============================================================================
 # DO NOT CALL THIS SCRIPT DIRECTLY
