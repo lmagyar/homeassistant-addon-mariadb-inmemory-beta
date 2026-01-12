@@ -6,6 +6,14 @@ necessary). **You can execute in the command line the**
 `/share/bin/update-mariadb-inmemory-while-ha-core-restarted` **script to do it
 automatically.**
 
+## 2.7.2.3 (forked)
+
+- Update MariaDB to 11.4.8-r0
+- Update Add-on base image to v18.2.1
+- Fix for add-on base image and bashio log changes, causing healthcheck messages to be not logged
+- Fix healthcheck, do not run until the database is started and imports are finished
+- Remove deprecated codenotary fields
+
 ## 2.7.2.2 (forked)
 
 - Fix conflict on table locking between healthcheck and database export
