@@ -9,8 +9,21 @@ automatically.**
 ## vNext (forked)
 
 - Update MariaDB to v11.4.10-r0
-- Drop support for armv7 architecture
-- Update App base image to v20 (Update Alpine base image to v3.23)
+- Update Add-on base image to v20.1.1
+
+## 3.0.1
+
+- Fix GRANT statement generation for multiple `privileges`
+
+## 3.0.0
+
+~**Note:** This update upgrades MariaDB from 10.11 to 11.4. The database
+migration will be performed automatically on the first startup after the
+app is updated. Make a backup of the MariaDB app before installing this
+update.~ (forked version already uses MariaDB 11.4)
+
+- Remove unsupported architectures (armhf, armv7, i386)
+- Update to Alpine 3.23 (updates MariaDB ~10.11.6~ to 11.4.9)
 
 ## 2.7.2.3 (forked)
 
