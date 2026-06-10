@@ -8,8 +8,8 @@ automatically.**
 
 ## vNext (forked)
 
-- Update Mariadb to v11.4.12-r0
-- Update App base image to v20.2.0
+- Update Mariadb to v11.8.8-r0
+- Update App base image to v21.0.0 (Update Alpine base image to v3.24.0)
 
 ## 3.0.1.1 (forked)
 
