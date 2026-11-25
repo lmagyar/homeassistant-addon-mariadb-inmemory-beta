@@ -284,6 +284,7 @@ belonging to the app anymore).
 ### Option: `databases`
 
 Database name, e.g., `homeassistant`. Multiple are allowed.
+A name may only contain letters, digits, `_`, `$` and `-`.
 
 ### Option: `logins`
 
@@ -293,6 +294,7 @@ User][createuser] documentation.
 ### Option: `logins.username`
 
 Database user login, e.g., `homeassistant`. [User Name][username] documentation.
+A user name may only contain letters, digits, spaces, `_`, `-`, `.` and `@`.
 
 ### Option: `logins.password`
 
@@ -447,4 +449,4 @@ In case you've found a bug, please [open an issue on our GitHub][issue].
 [reddit]: https://reddit.com/r/homeassistant
 [username]: https://mariadb.com/kb/en/create-user/#user-name-component
 [warning_stripe]: https://github.com/lmagyar/homeassistant-addon-mariadb-inmemory/raw/master/images/warning_stripe_wide.png
-[official_app]: https://github.com/home-assistant/addons/tree/master/mariadb
+[official_app]: https://github.com/home-assistant/app-mariadb
